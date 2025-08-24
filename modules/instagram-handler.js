@@ -6,7 +6,12 @@ const path = require('path');
 async function processInstagramUrl(url) { // NAMA FUNGSI DIUBAH
     const ytdlpPath = './yt-dlp';
     // Perintah yt-dlp tidak perlu diubah, ia cerdas mengenali URL
-    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --print-json --no-warnings "${url}"`;
+    let command = `"${ytdlpPath}" --print-json --no-warnings "${url}"`;
+    // Periksa apakah variabel PROXY_URL ada
+    if (process.env.PROXY_URL) {
+        // Jika ada, tambahkan flag --proxy
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --print-json --no-warnings "${url}"`;
+    }
 
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
@@ -33,6 +38,8 @@ async function processInstagramUrl(url) { // NAMA FUNGSI DIUBAH
         });
     });
 }
+
+const processInstagramUrl = (url) => processUrl(url, 'Instagram');
 
 // Ekspor fungsi baru
 module.exports = { processInstagramUrl };

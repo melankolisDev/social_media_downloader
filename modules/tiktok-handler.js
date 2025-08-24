@@ -5,7 +5,12 @@ const path = require('path');
 
 async function processTikTokUrl(url) {
     const ytdlpPath = './yt-dlp';
-    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --print-json --no-warnings "${url}"`;
+    let command = `"${ytdlpPath}" --print-json --no-warnings "${url}"`;
+    // Periksa apakah variabel PROXY_URL ada
+    if (process.env.PROXY_URL) {
+        // Jika ada, tambahkan flag --proxy
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --print-json --no-warnings "${url}"`;
+    }
 
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
@@ -42,5 +47,7 @@ async function processTikTokUrl(url) {
         });
     });
 }
+
+const processTikTokUrl = (url) => processUrl(url, 'TikTok');
 
 module.exports = { processTikTokUrl };
