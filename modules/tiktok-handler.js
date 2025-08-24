@@ -9,11 +9,11 @@ async function processTikTokUrl(url) {
     // Periksa apakah variabel PROXY_URL ada
     if (process.env.PROXY_URL) {
         // Jika ada, tambahkan flag --proxy
-        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --print-json --no-warnings "${url}"`;
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --socket-timeout 20 --print-json --no-warnings "${url}"`;
     }
 
     return new Promise((resolve, reject) => {
-        exec(command, (error, stdout, stderr) => {
+        exec(command, { timeout: 60000 }, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error saat menjalankan yt-dlp: ${stderr}`);
                 return reject(new Error('Gagal memproses URL TikTok.'));

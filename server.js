@@ -60,12 +60,12 @@ app.get('/download-tiktok-final', (req, res) => {
 
     let command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     if (process.env.PROXY_URL) {
-        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --socket-timeout 20 --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     }
 
     console.log(`Menjalankan perintah: ${command}`);
 
-    exec(command, (error, stdout, stderr) => {
+    exec(command, { timeout: 180000 }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengunduh: ${stderr}`);
             return res.status(500).send('Gagal mengunduh video dari TikTok.');
@@ -107,12 +107,12 @@ app.get('/download-tiktok-audio', (req, res) => {
 
     let command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     if (process.env.PROXY_URL) {
-        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --socket-timeout 20 --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     }
 
     console.log(`Menjalankan perintah audio: ${command}`);
 
-    exec(command, (error, stdout, stderr) => {
+    exec(command, { timeout: 180000 }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengekstrak audio: ${stderr}`);
             return res.status(500).send('Gagal mengekstrak audio dari video TikTok.');
@@ -154,10 +154,10 @@ app.get('/download-instagram-video', (req, res) => {
 
     let command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     if (process.env.PROXY_URL) {
-        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --socket-timeout 20 --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     }
 
-    exec(command, (error, stdout, stderr) => {
+    exec(command, { timeout: 180000 }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengunduh Instagram: ${stderr}`);
             return res.status(500).send('Gagal mengunduh video dari Instagram.');
@@ -189,9 +189,9 @@ app.get('/download-instagram-audio', (req, res) => {
 
     let command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     if (process.env.PROXY_URL) {
-        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+        command = `"${ytdlpPath}" --proxy "${process.env.PROXY_URL}" --socket-timeout 20 --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     }
-    exec(command, (error, stdout, stderr) => {
+   exec(command, { timeout: 180000 }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengekstrak audio Instagram: ${stderr}`);
             return res.status(500).send('Gagal mengekstrak audio dari video Instagram.');
