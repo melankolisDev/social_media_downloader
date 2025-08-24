@@ -5,7 +5,7 @@ const path = require('path');
 
 async function processTikTokUrl(url) {
     const ytdlpPath = './yt-dlp';
-    const command = `"${ytdlpPath}" --print-json --no-warnings "${url}"`;
+    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --print-json --no-warnings "${url}"`;
 
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {

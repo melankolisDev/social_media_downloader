@@ -58,7 +58,7 @@ app.get('/download-tiktok-final', (req, res) => {
     const ytdlpPath = './yt-dlp'; // Path untuk versi Linux
     const ffmpegPath = './ffmpeg'; // Tentukan path ke ffmpeg
 
-    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
 
     console.log(`Menjalankan perintah: ${command}`);
 
@@ -102,7 +102,7 @@ app.get('/download-tiktok-audio', (req, res) => {
     const ytdlpPath = './yt-dlp';
     const ffmpegPath = './ffmpeg';
 
-    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
 
     console.log(`Menjalankan perintah audio: ${command}`);
 
@@ -146,7 +146,7 @@ app.get('/download-instagram-video', (req, res) => {
     const ytdlpPath = './yt-dlp';
     const ffmpegPath = './ffmpeg';
 
-    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengunduh Instagram: ${stderr}`);
@@ -177,7 +177,7 @@ app.get('/download-instagram-audio', (req, res) => {
     const ytdlpPath = './yt-dlp';
     const ffmpegPath = './ffmpeg';
 
-    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ignore-config --geo-bypass --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengekstrak audio Instagram: ${stderr}`);
