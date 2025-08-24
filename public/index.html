@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader Serbaguna - YouTube, TikTok, Instagram</title>
+    <!-- Import Font dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Hubungkan ke CSS baru kita -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ikon untuk tombol (dari Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <h1>Downloader Serbaguna</h1>
+            <p>Unduh video dan audio dari YouTube, TikTok, & Instagram Reels</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="downloader-card">
+                <h2>Tempelkan URL Video Anda</h2>
+                <div class="input-container">
+                    <input type="text" id="video-url" placeholder="Contoh: https://www.youtube.com/watch?v=...">
+                    <button id="get-video-btn">
+                        <span class="btn-text">Dapatkan Video</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="loader" class="loader" style="display: none;"></div>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            
+            <div id="video-info" class="video-info-card" style="display: none;">
+                <div class="thumbnail-container">
+                    <img id="thumbnail" src="" alt="Video thumbnail">
+                </div>
+                <div class="details-container">
+                    <h3 id="video-title"></h3>
+                    <div id="download-links"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 - Dibuat dengan Penuh Semangat</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

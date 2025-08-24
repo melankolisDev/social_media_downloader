@@ -1,0 +1,249 @@
+/* --- Reset & Variabel Global --- */
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --light-text-color: #666;
+    --white-color: #fff;
+    --error-color: #d32f2f;
+    --success-color: #388e3c;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* --- Header & Footer --- */
+.main-header, .main-footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--white-color);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.main-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+}
+
+/* --- Card Utama --- */
+.downloader-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: -40px; /* Efek menumpuk di atas header */
+    position: relative;
+    z-index: 10;
+}
+
+.downloader-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column; /* Ubah ke kolom untuk mobile */
+}
+
+#video-url {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Sudut membulat di semua sisi */
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 1rem; /* Spasi antar input dan tombol di mobile */
+}
+
+#video-url:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+}
+
+#get-video-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#get-video-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 117, 252, 0.4);
+}
+
+#get-video-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#get-video-btn .btn-text {
+    margin-right: 0.5rem;
+}
+
+/* --- Loader, Error, dan Card Info Video --- */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid var(--primary-color);
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    text-align: center;
+    color: var(--error-color);
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(211, 47, 47, 0.1);
+    border: 1px solid var(--error-color);
+    border-radius: var(--border-radius);
+}
+
+.video-info-card {
+    display: flex;
+    flex-direction: column; /* Layout kolom untuk mobile */
+    background: var(--card-background);
+    margin-top: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden; /* Agar sudut gambar mengikuti card */
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.details-container {
+    padding: 1.5rem;
+}
+
+#video-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#download-links h4 {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.download-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    font-weight: 500;
+}
+
+.download-link:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.download-link.audio {
+    background-color: var(--success-color);
+}
+
+.download-link.audio:hover {
+    background-color: #2e7d32;
+}
+
+/* --- Media Query untuk Layar Lebih Besar (Desktop) --- */
+@media (min-width: 768px) {
+    .main-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .input-container {
+        flex-direction: row; /* Kembali ke layout baris */
+    }
+
+    #video-url {
+        border-radius: 8px 0 0 8px;
+        margin-bottom: 0;
+    }
+
+    #get-video-btn {
+        border-radius: 0 8px 8px 0;
+    }
+
+    .video-info-card {
+        flex-direction: row; /* Layout baris untuk info video */
+    }
+
+    .thumbnail-container {
+        flex: 0 0 300px; /* Lebar thumbnail tetap */
+    }
+    
+    .thumbnail-container img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .details-container {
+        padding: 2rem;
+        flex: 1;
+    }
+}
