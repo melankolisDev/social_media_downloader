@@ -2,6 +2,10 @@
 # exit on error
 set -o errexit
 
+# --- TAMBAHKAN BLOK INI UNTUK MENGINSTAL PYTHON ---
+echo "Updating package lists and installing Python..."
+apt-get update && apt-get install -y python3 python3-pip
+
 echo "Installing NPM dependencies..."
 npm install
 
