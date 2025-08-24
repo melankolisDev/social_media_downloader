@@ -39,7 +39,5 @@ async function processInstagramUrl(url) { // NAMA FUNGSI DIUBAH
     });
 }
 
-const processInstagramUrl = (url) => processUrl(url, 'Instagram');
-
 // Ekspor fungsi baru
 module.exports = { processInstagramUrl };

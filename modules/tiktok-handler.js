@@ -48,6 +48,4 @@ async function processTikTokUrl(url) {
     });
 }
 
-const processTikTokUrl = (url) => processUrl(url, 'TikTok');
-
 module.exports = { processTikTokUrl };
