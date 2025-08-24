@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const path = require('path');
 
 async function processTikTokUrl(url) {
-    const ytdlpPath = path.join(__dirname, '..', 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp';
     const command = `"${ytdlpPath}" --print-json --no-warnings "${url}"`;
 
     return new Promise((resolve, reject) => {

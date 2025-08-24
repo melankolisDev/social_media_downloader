@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const path = require('path');
 
 async function processInstagramUrl(url) { // NAMA FUNGSI DIUBAH
-    const ytdlpPath = path.join(__dirname, '..', 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp';
     // Perintah yt-dlp tidak perlu diubah, ia cerdas mengenali URL
     const command = `"${ytdlpPath}" --print-json --no-warnings "${url}"`;
 

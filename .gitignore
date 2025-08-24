@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+
+# Temporary files
+/temp/
+
+# Executables
+*.exe
+
+# Lain-lain
+.DS_Store
+temp.txt

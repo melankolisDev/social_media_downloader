@@ -9,7 +9,7 @@ const { processTikTokUrl } = require('./modules/tiktok-handler');
 const { processInstagramUrl } = require('./modules/instagram-handler'); // --- 1. IMPOR HANDLER BARU ---
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -55,10 +55,10 @@ app.get('/download-tiktok-final', (req, res) => {
     }
     const uniqueFilename = `${Date.now()}.mp4`;
     const tempFilePath = path.join(tempDir, uniqueFilename);
-    const ytdlpPath = path.join(__dirname, 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp'; // Path untuk versi Linux
+    const ffmpegPath = './ffmpeg'; // Tentukan path ke ffmpeg
 
-    // Perintahkan yt-dlp untuk MENGUNDUH video ke file sementara
-    const command = `"${ytdlpPath}" -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
 
     console.log(`Menjalankan perintah: ${command}`);
 
@@ -99,12 +99,10 @@ app.get('/download-tiktok-audio', (req, res) => {
     // File sementara juga kita beri ekstensi .mp3
     const uniqueFilename = `${Date.now()}.mp3`;
     const tempFilePath = path.join(tempDir, uniqueFilename);
-    const ytdlpPath = path.join(__dirname, 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp';
+    const ffmpegPath = './ffmpeg';
 
-    // --- PERINTAH YT-DLP YANG BERBEDA ---
-    // -x atau --extract-audio: Memberitahu yt-dlp untuk mengambil audio saja.
-    // --audio-format mp3: Menentukan format output audio.
-    const command = `"${ytdlpPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
 
     console.log(`Menjalankan perintah audio: ${command}`);
 
@@ -145,9 +143,10 @@ app.get('/download-instagram-video', (req, res) => {
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
     const uniqueFilename = `${Date.now()}.mp4`;
     const tempFilePath = path.join(tempDir, uniqueFilename);
-    const ytdlpPath = path.join(__dirname, 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp';
+    const ffmpegPath = './ffmpeg';
 
-    const command = `"${ytdlpPath}" -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -o "${tempFilePath}" "${url}"`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengunduh Instagram: ${stderr}`);
@@ -175,9 +174,10 @@ app.get('/download-instagram-audio', (req, res) => {
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
     const uniqueFilename = `${Date.now()}.mp3`;
     const tempFilePath = path.join(tempDir, uniqueFilename);
-    const ytdlpPath = path.join(__dirname, 'yt-dlp.exe');
+    const ytdlpPath = './yt-dlp';
+    const ffmpegPath = './ffmpeg';
 
-    const command = `"${ytdlpPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
+    const command = `"${ytdlpPath}" --ffmpeg-location "${ffmpegPath}" -x --audio-format mp3 -o "${tempFilePath}" "${url}"`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error saat yt-dlp mengekstrak audio Instagram: ${stderr}`);
